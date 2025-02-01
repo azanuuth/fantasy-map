@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Fantasy Map: Underworld</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #map-container {
+            width: 100%;
+            height: 100vh; /* Makes the map fill the entire viewport height */
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Fantasy Map: Underworld</h1>
+    <div id="map-container">
+        <!-- Embed the SVG map using the raw GitHub URL -->
+        <object type="image/svg+xml" data="https://raw.githubusercontent.com/azanuuth/fantasy-map/main/Underworld.svg" width="100%" height="100%"></object>
+    </div>
+
+    <script>
+        // Ensure that the SVG object is loaded before manipulating it
+        const svgObject = document.querySelector('object');
+        
+        svgObject.onload = function() {
+            // Get the content of the SVG file after it's loaded
+            const svgDoc = svgObject.contentDocument;
+
+            // Example: Find all regions within the SVG (update class or ID based on actual SVG structure)
+            const regions = svgDoc.querySelectorAll('.region'); // Replace `.region` with the actual class or ID used in your SVG
+
+            // Add event listeners to each region for interactivity
+            regions.forEach(region => {
+                region.addEventListener('click', function() {
+                    alert('You clicked on: ' + region.id);  // Display an alert with the region's ID when clicked
+                    // Here, you can replace the alert with custom actions (e.g., displaying info or navigating to another page)
+                });
+
+                region.addEventListener('mouseover', function() {
+                    region.style.fill = "#FF6347";  // Change color on hover
+                });
+
+                region.addEventListener('mouseout', function() {
+                    region.style.fill = "";  // Reset color when mouse leaves the region
+                });
+            });
+        };
+    </script>
+</body>
+</html>
